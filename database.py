@@ -1,8 +1,13 @@
 import sqlite3
+import os
+
 def connect():
+    # data klasörünü oluştur
+    os.makedirs("data", exist_ok=True)
     conn = sqlite3.connect("data/lms.db")
     conn.row_factory = sqlite3.Row
     return conn
+
 def create_tables():
     conn = connect()
     cur = conn.cursor()
@@ -37,6 +42,7 @@ def register_user(username, password):
         return False
     finally:
         conn.close()
+
 def login_user(username, password):
     conn = connect()
     cur = conn.cursor()
@@ -57,11 +63,11 @@ def add_course(title, description):
     )
     conn.commit()
     conn.close()
+
 def get_courses():
     conn = connect()
     cur = conn.cursor()
     cur.execute("SELECT * FROM courses")
     courses = cur.fetchall()
     conn.close()
-
     return courses
