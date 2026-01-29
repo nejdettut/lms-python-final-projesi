@@ -2,9 +2,7 @@ import streamlit as st
 from database import *
 from api import analyze_text
 create_tables()
-st.title("
-🎓
- LMS Sistemi")
+st.title("Python Final Projesi LMS Sistemi")
 menu = st.selectbox("Menü", ["Giriş", "Kayıt", "Kurslar", "Admin"])
 if menu == "Kayıt":
     u = st.text_input("Kullanıcı Adı")
@@ -32,4 +30,5 @@ elif menu == "Kurslar":
     courses = get_courses()
     for c in courses:
         st.subheader(c["title"])
+
         st.write(c["description"])
