@@ -23,7 +23,7 @@ def create_tables():
     conn.commit()
     conn.close()
 
-    def register_user(username, password):
+def register_user(username, password):
     conn = connect()
     cur = conn.cursor()
     try:
@@ -63,4 +63,5 @@ def get_courses():
     cur.execute("SELECT * FROM courses")
     courses = cur.fetchall()
     conn.close()
+
     return courses
